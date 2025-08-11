@@ -22,13 +22,14 @@ const signupUser = async (req, res) => {
         password,
       });
       res.status(201).json({
-        message: "user created successfully",
+        message: "user created successfull",
         user: {
           _id: user._id,
           fullName: user.fullName,
           email: user.email,
           phoneNumber: user.phoneNumber,
           password: user.password,
+          
         },
         token: generateToken(user._id),
       });
