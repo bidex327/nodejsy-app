@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const userRoutes = require("./routes/userRoutes");
 const mongoose = require("mongoose");
+
+const cors = require ('cors')
+
 require("dotenv").config();
 mongoose .connect(process.env.MONGO_URI).then(() => {
     console.log("database connected successfully!!");
@@ -10,6 +13,9 @@ mongoose .connect(process.env.MONGO_URI).then(() => {
   });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors())
+
 app.use('/api', userRoutes);
 
 app.get("/info", (req, res) => {
