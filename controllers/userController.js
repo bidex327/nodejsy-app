@@ -29,7 +29,6 @@ const signupUser = async (req, res) => {
           email: user.email,
           phoneNumber: user.phoneNumber,
           password: user.password,
-          
         },
         token: generateToken(user._id),
       });
