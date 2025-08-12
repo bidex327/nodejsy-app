@@ -32,6 +32,10 @@ app.get('/', (req, res)=>{
 res.send ('welcome')
 })
 
-app.listen(5000, () => {
-  console.log("server is running on port 5000");
-});
+if(process.env.NODE_ENV !== 'Production'){
+    app.listen(5000, ()=>{
+    console.log('server is running on port 3000')
+    })
+}
+
+module.exports = app;
