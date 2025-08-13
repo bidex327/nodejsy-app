@@ -29,13 +29,14 @@ mongoose .connect(process.env.MONGO_URI).then(() => {
 app.use('/api', userRoutes);
 
 app.get('/', (req, res)=>{
-res.send ('welcome')
+res.send('welcome')
 })
 
+
 if(process.env.NODE_ENV !== 'Production'){
-    app.listen(5000, ()=>{
+    app.listen(3000, ()=>{
     console.log('server is running on port 3000')
     })
 }
 
-module.exports = app;
+module.exports = app

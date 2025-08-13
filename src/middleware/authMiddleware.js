@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userSchema'); // Assuming you want to attach the user object to req
+const User = require('../../models/userSchema'); // Assuming you want to attach the user object to req
 require('dotenv').config()
 const JWT_SECRET = process.env.SECRET_KEY; // Use the same key as in generateToken
 const protect = async (req, res, next) => {
