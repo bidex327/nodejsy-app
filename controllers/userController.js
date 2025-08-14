@@ -12,10 +12,7 @@ const signupUser = async (req, res) => {
       if (exist) {
         return res.status(400).json({ message: "user already exist" });
       }
-      const profile = await Profile.create({
-        bio,
-        profilePicture,
-      });
+    
 
       const user = await User.create({
         fullName,
