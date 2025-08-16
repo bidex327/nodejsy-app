@@ -1,5 +1,6 @@
 const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
+const generateToken = require("../utils/generateToken")
 
 const signupUser = async (req, res) => {
   try {
@@ -53,7 +54,7 @@ const loginUser = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User does not exist!" });
     }
-    //compare password
+    
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
