@@ -16,6 +16,8 @@ const connectDB = async (req, res, next) => {
       res.status(503).json({ message: "Service Unavailable: Could not connect to the database." });
     }
   };
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Alloww-Origin", "*");
@@ -26,8 +28,6 @@ app.use(function (req, res, next) {
   );
   next();
 });
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -39,16 +39,16 @@ mongoose
   });
 
 app.use("/api", userRoutes);
-app.use('/api', connectDB, userRoutes)
+app.use("/api", connectDB, userRoutes)
 app.get("/", (req, res) => {
   res.send("welcome to my Api");
 });
 
-const PORT = process.env.PORT || 5000;
-if (process.env.NODE_ENV !== "production") {
-  app.listen(PORT, () => {
-    console.log(`Server running locally on port ${PORT}`);
-  });
+if(process.env.NODE_ENV !== 'production'){
+    const PORT = 5000
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    })
 }
 
 module.exports = app;
