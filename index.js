@@ -24,21 +24,21 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin-x-requested-with, Content-Type,Accept, Authorization;"
+    "Origin, x-Requested-with Content-Type,Accept, Authorization;"
   );
   next();
 });
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("database connected successfully!!");
-  })
-  .catch((err) => {
-    console.error(`an error occured:${err.message}`);
-  });
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => {
+//     console.log("database connected successfully!!");
+//   })
+//   .catch((err) => {
+//     console.error(`an error occured:${err.message}`);
+//   });
 
-app.use("/api", userRoutes);
+// app.use("/api", userRoutes);
 app.use("/api", connectDB, userRoutes)
 app.get("/", (req, res) => {
   res.send("welcome to my Api");
