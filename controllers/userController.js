@@ -32,7 +32,7 @@ const signupUser = async (req, res) => {
           password: user.password,
         
         },
-        token: generateToken(User._id),
+        token: generateToken(user._id),
       });
     } else {
       return res.status(400).json({ message: "All fields are required" });

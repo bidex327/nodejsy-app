@@ -7,7 +7,7 @@ const generateToken = (userId) => {
       throw new error("userId is required");
     }
     const token = jwt.sign({ Id: userId }, process.env.SECRET_KEY, {
-      expiresIn: "10m",
+      expiresIn: "30m",
     });
     return token;
   } catch (err) {

@@ -29,22 +29,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-// mongoose
-//   .connect(process.env.MONGO_URI)
-//   .then(() => {
-//     console.log("database connected successfully!!");
-//   })
-//   .catch((err) => {
-//     console.error(`an error occured:${err.message}`);
-//   });
-
-// app.use("/api", userRoutes);
 app.use("/api", connectDB, userRoutes)
 app.get("/", (req, res) => {
   res.send("welcome to my Api");
 });
 
-if(process.env.MONGO_URI !== 'production'){
+if(process.env.NODE_ENV !== 'production'){
     const PORT = 5000
     app.listen(PORT, () => {
         console.log(`Server running on port ${PORT}`)
