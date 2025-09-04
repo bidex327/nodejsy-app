@@ -1,4 +1,4 @@
-const User = require("../models/userSchema");
+const Users = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken")
 
@@ -15,7 +15,7 @@ const signupUser = async (req, res) => {
       }
     
 
-      const user = await User.create({
+      const users = await Users.create({
         fullName,
         email,
         phoneNumber,
@@ -25,14 +25,14 @@ const signupUser = async (req, res) => {
       res.status(201).json({
         message: "user with profile created successfully",
         user: {
-          _id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          phoneNumber: user.phoneNumber,
-          password: user.password,
+          _id: users._id,
+          fullName: users.fullName,
+          email: users.email,
+          phoneNumber: users.phoneNumber,
+          password: users.password,
         
         },
-        token: generateToken(user._id),
+        token: generateToken(users._id),
       });
     } else {
       return res.status(400).json({ message: "All fields are required" });
@@ -49,9 +49,9 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const users = await Users.findOne({ email });
 
-    if (!user) {
+    if (!users) {
       return res.status(400).json({ message: "User does not exist!" });
     }
     
@@ -64,12 +64,12 @@ const loginUser = async (req, res) => {
     res.status(200).json({
       message: "Login successful!",
       user: {
-        _id: user._id,
-        fullName: user.fullName,
-        email: user.email,
-        password: user.password,
+        _id: users._id,
+        fullName: users.fullName,
+        email: users.email,
+        password: users.password,
       },
-      token: generateToken(user._id),
+      token: generateToken(users._id),
     });
   } catch (err) {
     console.error(`An error has occurred: ${err.message}`);
