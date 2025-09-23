@@ -109,6 +109,7 @@ export default function handler(req, res) {
     },
 
     {
+        
       id: 11,
       image:
         "http://static1.gensler.com/uploads/image/99461/post-ironworkers-63-training-facility-1024x576_1755546153.jpg",
