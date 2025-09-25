@@ -2,7 +2,7 @@ const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken")
 
-const signupUser = async (req, res) => {
+const createUser = async (req, res) => {
   try {
     const { fullName, email, phoneNumber, password } = req.body;
 
@@ -78,4 +78,4 @@ const loginUser = async (req, res) => {
 };
 
 
-module.exports = { signupUser, loginUser};
+module.exports = { createUser, loginUser};
