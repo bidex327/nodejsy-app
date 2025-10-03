@@ -220,7 +220,7 @@ app.use (cors());
     },
   ];
   app.get("/api/cards", (req, res) => {
-      res.status(200).json(Cards);
+      res.status(201).json(Cards);
   });
 
   
