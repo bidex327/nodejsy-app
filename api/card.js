@@ -1,4 +1,7 @@
-export default function handler(req, res) {
+const express = require ("express")
+const cors = require ("cors")
+const app=express();
+app.use (cors());
   const Cards = [
     {
       id: 1,
@@ -216,5 +219,9 @@ export default function handler(req, res) {
         "   Through thoughtful, climate-responsive design, seemingly adverse conditions can become a distinct advantage for tropical cities.                                      ",
     },
   ];
-  res.status(200).json(Cards);
-}
+  app.get("/api/cards", (req, res) => {
+      res.status(200).json(Cards);
+  });
+
+  
+
