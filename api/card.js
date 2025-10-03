@@ -219,7 +219,7 @@ app.use (cors());
         "   Through thoughtful, climate-responsive design, seemingly adverse conditions can become a distinct advantage for tropical cities.                                      ",
     },
   ];
-  app.get("/api/cards", (req, res) => {
+  app.get("http://localhost:5000/api/cards", (req, res) => {
       res.status(200).json(Cards);
   });
 
