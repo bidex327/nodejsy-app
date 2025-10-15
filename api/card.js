@@ -1,7 +1,5 @@
-const express = require ("express")
-const cors = require ("cors")
-const app=express();
-app.use (cors());
+const express = require ("express");
+const router = express.Router();
   const Cards = [
     {
       id: 1,
@@ -219,7 +217,8 @@ app.use (cors());
         "   Through thoughtful, climate-responsive design, seemingly adverse conditions can become a distinct advantage for tropical cities.                                      ",
     },
   ];
-  app.get("/api/cards", (req, res) => {
+  app.get('/api/cards', (req, res) => {
       res.status(200).json(Cards);
   });
 
+module.exports = router;
