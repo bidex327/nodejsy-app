@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
+const cardsRoutes = require("./routes/cards")
 
 
 const { dbConnect } = require("./lib/dbConnect");
@@ -33,7 +34,15 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use("/api", connectDB, userRoutes);
+
+
+app.use("/api", connectDB, userRoutes,);
+app.use("/api", connectDB, cardsRoutes)
+
+// app.get("/api/cards", (req, res) => {
+
+// res.status(200).json(cards);
+// });
 app.get("/", (req, res) => {
   res.send("welcome to my Api");
 });
