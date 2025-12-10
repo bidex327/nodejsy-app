@@ -47,7 +47,7 @@ const cards = Array.from({ length: 21 }, (_, i) => {
   };
 });
 
-function paginate(array, page = 1, limit = 6) {
+function paginate(array, page = 1, limit = 4) {
   const total = array.length;
   const pageCount = Math.max(1, Math.ceil(total / limit));
   const normalizedPage = Math.min(Math.max(1, page), pageCount);
@@ -60,7 +60,7 @@ function paginate(array, page = 1, limit = 6) {
 router.get("/cards", (req, res) => {
   try {
     const page = parseInt(req.query.page || "1", 10);
-    const limit = Math.max(1, parseInt(req.query.limit || "6", 10));
+    const limit = Math.max(1, parseInt(req.query.limit || "4", 10));
     const search = (req.query.search || "").trim().toLowerCase();
     const category = (req.query.category || "").trim().toLowerCase();
 
