@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 
 
 app.use("/api", connectDB, userRoutes,);
-app.use("/api", connectDB, cardsRoutes)
+app.use("/api", cardsRoutes)
 
 // app.get("/api/cards", (req, res) => {
 
