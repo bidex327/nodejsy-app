@@ -22,22 +22,29 @@ const connectDB = async (req, res, next) => {
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-  origin: [
-    "http://localhost:5174", // local dev
-    "https://gensler-frontend.vercel.app" // production
-  ]
-}));
+// app.use(cors({
+//   origin: [
+//     "http://localhost:5174", // local dev
+//     "https://gensler-frontend.vercel.app" // production
+//   ]
+// }));
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, x-Requested-with Content-Type,Accept, Authorization;"
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, x-Requested-with Content-Type,Accept, Authorization;"
+//   );
+//   next();
+
+// });
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 
 
