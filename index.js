@@ -22,7 +22,12 @@ const connectDB = async (req, res, next) => {
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5174", // local dev
+    "https://gensler-frontend.vercel.app" // production
+  ]
+}));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
