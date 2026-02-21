@@ -22,39 +22,38 @@ const connectDB = async (req, res, next) => {
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cors({
-//   origin: [
-//     "http://localhost:5174", // local dev
-//     "https://gensler-frontend.vercel.app" // production
-//   ]
-// }));
-
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, x-Requested-with Content-Type,Accept, Authorization;"
-//   );
-//   next();
-
-// });
-
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: [
+    "http://localhost:5174", // local dev
+    "https://gensler-frontend.vercel.app" // production
+  ]
 }));
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, x-Requested-with Content-Type,Accept, Authorization;"
+  );
+  next();
+
+});
+
+// app.use(cors({
+//   origin: "#",
+//   methods: ["GET", "POST", "PUT", "DELETE"]
+// }));
 
 
 
 app.use("/api", connectDB, userRoutes,);
 app.use("/api", cardsRoutes)
 
-// app.get("/api/cards", (req, res) => {
+app.get("/api/cards", (req, res) => {
 
-// res.status(200).json(cards);
-// });
+res.status(200).json(cards);
+});
 app.get("/", (req, res) => {
   res.send("welcome to my Api");
 });
