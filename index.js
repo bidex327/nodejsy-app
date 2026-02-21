@@ -22,11 +22,20 @@ const connectDB = async (req, res, next) => {
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// app.use(cors({
+//   origin: [
+//     "http://localhost:5174", // local dev
+//     "https://gensler-frontend.vercel.app" // production
+//   ]
+// }));
+
 app.use(cors({
   origin: [
     "http://localhost:5174", // local dev
-    "https://gensler-frontend.vercel.app" // production
-  ]
+    "https://gensler-i4tt.vercel.app" // production frontend
+  ],
+  methods: ["GET","POST","PUT","DELETE"],
+  credentials: true
 }));
 
 // app.use(function (req, res, next) {
