@@ -75,63 +75,48 @@
 // }));
 
 
-// app.js / index.js
 const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
 
-// Routes
 const userRoutes = require("./routes/userRoutes");
 const cardsRoutes = require("./routes/cards");
-
-// DB connect
 const { dbConnect } = require("./lib/dbConnect");
 
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS setup
 app.use(
   cors({
     origin: [
-      "http://localhost:5174", // local dev
-      "https://gensler-i4tt.vercel.app" // production frontend
+      "http://localhost:5174",
+      "https://gensler-i4tt.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })
 );
 
-// Connect to DB **once** at server start
-dbConnect()
-  .then(() => console.log("Database connected successfully"))
-  .catch((err) => {
-    console.error("Database connection failed:", err);
-    // optional: process.exit(1); // stop server if DB fails
-  });
+// Connect once at startup
+(async () => {
+  try {
+    await dbConnect();
+    console.log("Database ready");
+  } catch (err) {
+    console.error("DB connection failed:", err);
+  }
+})();
 
-// Routes
 app.use("/api", userRoutes);
 app.use("/api", cardsRoutes);
 
-// Sample cards endpoint (optional)
-app.get("/api/cards", (req, res) => {
-  res.status(200).json(cards);
-});
+app.get("/api/cards", (req, res) => res.status(200).json(cards));
+app.get("/", (req, res) => res.send("Welcome to my API"));
 
-// Root endpoint
-app.get("/", (req, res) => {
-  res.send("Welcome to my API");
-});
-
-// Only listen locally (Vercel ignores this in production)
 if (process.env.NODE_ENV !== "production") {
   const PORT = 5000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
 module.exports = app;
