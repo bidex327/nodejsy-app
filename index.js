@@ -91,7 +91,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5174",
-      "https://gensler-i4tt.vercel.app"
+      "https://gensler-m53g.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
